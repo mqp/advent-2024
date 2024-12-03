@@ -1,5 +1,3 @@
-use itertools::Itertools;
-use std::collections::HashMap;
 use std::error::Error;
 use std::io;
 
@@ -33,15 +31,15 @@ fn is_safe(report: &[isize]) -> bool {
     for i in 0..report.len() - 1 {
         let curr = report[i];
         let next = report[i+1];
-        let delta = (curr - next);
+        let delta = curr - next;
         if delta > 0 {
             seen_increasing = true;
-            if (seen_decreasing) {
+            if seen_decreasing {
                 return false;
             }
         } else if delta < 0 {
             seen_decreasing = true;
-            if (seen_increasing) {
+            if seen_increasing {
                 return false;
             }
         } else {
